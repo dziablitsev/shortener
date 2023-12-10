@@ -1,3 +1,7 @@
 package main
 
-func main() {}
+import "github.com/dziablitsev/shortener/internal/app"
+
+func main() {
+	app.Init()
+}
