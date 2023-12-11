@@ -7,10 +7,10 @@ import (
 
 var urlMap = make(map[string]string)
 
-const keyLength int = 8
+const KeyLength int = 8
 
 func Add(url string) string {
-	key := generateKey(keyLength)
+	key := generateKey(KeyLength)
 	urlMap[key] = url
 	return key
 }

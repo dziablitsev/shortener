@@ -7,7 +7,7 @@ import (
 )
 
 func Init() {
-	http.Handle(`/`, middleware.URL(http.HandlerFunc(handler.Main)))
+	http.Handle(`/`, middleware.URL(http.HandlerFunc(handler.Create)))
 
 	err := http.ListenAndServe(`:8080`, nil)
 	if err != nil {
