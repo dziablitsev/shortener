@@ -8,8 +8,8 @@ import (
 )
 
 func Redirect(res http.ResponseWriter, req *http.Request) {
-	key := strings.TrimLeft(req.URL.Path, "/")
-	url, found := storage.Get(key)
+	id := strings.TrimLeft(req.URL.Path, "/")
+	url, found := storage.Get(id)
 	if !found || req.Method != http.MethodGet {
 		response.BadRequest(res)
 		return

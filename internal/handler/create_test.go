@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/dziablitsev/shortener/internal/storage"
+	"github.com/dziablitsev/shortener/internal/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"io"
@@ -53,7 +53,7 @@ func TestCreate(t *testing.T) {
 			assert.Equal(t, test.expected.contentType, res.Header.Get("Content-Type"))
 			assert.Equal(t, test.expected.urlScheme, parsedURL.Scheme)
 			assert.Equal(t, test.expected.urlHost, parsedURL.Host)
-			assert.Len(t, key, storage.KeyLength)
+			assert.Len(t, key, config.ShortLinkLen)
 		})
 	}
 

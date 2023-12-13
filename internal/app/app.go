@@ -3,14 +3,19 @@ package app
 import (
 	"github.com/dziablitsev/shortener/internal/handler"
 	"github.com/dziablitsev/shortener/internal/middleware"
+	"github.com/go-chi/chi/v5"
+	"log"
 	"net/http"
 )
 
-func Init() {
-	http.Handle(`/`, middleware.URL(http.HandlerFunc(handler.Create)))
+func Run() {
+	log.Fatal(http.ListenAndServe(":8080", Router()))
+}
 
-	err := http.ListenAndServe(`:8080`, nil)
-	if err != nil {
-		panic(err)
-	}
+func Router() chi.Router {
+	router := chi.NewRouter()
+	router.Use(middleware.URLParam)
+	router.Post("/", handler.Create)
+	router.Get("/{id}", handler.Redirect)
+	return router
 }
