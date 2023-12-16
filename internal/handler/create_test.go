@@ -13,6 +13,8 @@ import (
 )
 
 func TestCreate(t *testing.T) {
+	setConfig()
+
 	positiveTests := []struct {
 		name     string
 		url      string
@@ -53,7 +55,7 @@ func TestCreate(t *testing.T) {
 			assert.Equal(t, test.expected.contentType, res.Header.Get("Content-Type"))
 			assert.Equal(t, test.expected.urlScheme, parsedURL.Scheme)
 			assert.Equal(t, test.expected.urlHost, parsedURL.Host)
-			assert.Len(t, key, config.ShortLinkLen)
+			assert.Len(t, key, config.ShortURL.Len)
 		})
 	}
 

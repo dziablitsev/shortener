@@ -1,6 +1,7 @@
 package url
 
 import (
+	"github.com/dziablitsev/shortener/internal/config"
 	"io"
 	"net/http"
 	"net/url"
@@ -18,9 +19,9 @@ func GetParsedURL(req *http.Request) string {
 	return parsedURL.Scheme + "://" + parsedURL.Host + parsedURL.Path
 }
 
-func GetShortURL(req *http.Request, urlKey string) string {
-	if req.Host == "" || urlKey == "" {
+func GetShortURL(urlKey string) string {
+	if urlKey == "" {
 		return ""
 	}
-	return "http://" + req.Host + "/" + urlKey
+	return config.ShortURL.Host + "/" + urlKey
 }

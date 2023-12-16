@@ -1,3 +1,10 @@
 package config
 
-const ShortLinkLen = 8
+var Server ServerConfig
+
+var ShortURL ShortURLConfig
+
+func SetConfig(serverConfig ServerConfig, shortURLConfig ShortURLConfig) {
+	Server = serverConfig
+	ShortURL = shortURLConfig
+}

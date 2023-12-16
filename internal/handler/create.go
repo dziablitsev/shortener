@@ -15,7 +15,7 @@ func Create(res http.ResponseWriter, req *http.Request) {
 	}
 
 	key := storage.Add(parsedURL)
-	shortURL := url.GetShortURL(req, key)
+	shortURL := url.GetShortURL(key)
 
 	res.Header().Set("Content-Type", "text/plain")
 	res.WriteHeader(http.StatusCreated)
