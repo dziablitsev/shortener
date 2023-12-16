@@ -5,8 +5,14 @@ import (
 	"github.com/dziablitsev/shortener/internal/config"
 )
 
+var serverAddr string
+var shortURLHost string
+var serverDebug bool
+var shortURLLen int
+
 func main() {
 	parseFlags()
+	setEnvValues()
 	config.SetConfig(buildConfig())
 
 	if err := app.Run(); err != nil {
