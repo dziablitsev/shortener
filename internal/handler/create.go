@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func Main(res http.ResponseWriter, req *http.Request) {
+func Create(res http.ResponseWriter, req *http.Request) {
 	parsedURL := url.GetParsedURL(req)
 	if parsedURL == "" || req.Method != http.MethodPost || req.URL.Path != "/" {
 		response.BadRequest(res)
@@ -17,6 +17,7 @@ func Main(res http.ResponseWriter, req *http.Request) {
 	key := storage.Add(parsedURL)
 	shortURL := url.GetShortURL(req, key)
 
+	res.Header().Set("Content-Type", "text/plain")
 	res.WriteHeader(http.StatusCreated)
 	_, err := res.Write([]byte(shortURL))
 	if err != nil {
