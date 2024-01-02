@@ -1,15 +1,8 @@
-package main
+package config
 
-import (
-	"flag"
-)
+import "flag"
 
-var serverAddr string
-var shortURLHost string
-var serverDebug bool
-var shortURLLen int
-
-func parseFlags() {
+func ParseFlags() {
 	flag.StringVar(&serverAddr, "a", "localhost:8080", "address and port to run server")
 	flag.StringVar(&shortURLHost, "b", "http://localhost:8080", "short url address")
 	flag.BoolVar(&serverDebug, "debug", false, "debug mode")

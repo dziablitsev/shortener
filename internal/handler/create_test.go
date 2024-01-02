@@ -1,15 +1,17 @@
 package handler
 
 import (
-	"github.com/dziablitsev/shortener/internal/config"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+
+	"github.com/dziablitsev/shortener/internal/config"
 )
 
 func TestCreate(t *testing.T) {

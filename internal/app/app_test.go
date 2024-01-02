@@ -1,16 +1,21 @@
 package app
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+
+	"github.com/dziablitsev/shortener/internal/config"
 )
 
 func TestRouter(t *testing.T) {
+	setConfig()
+
 	ts := httptest.NewServer(Router())
 	defer ts.Close()
 
@@ -52,4 +57,11 @@ func testRequest(t *testing.T, ts *httptest.Server, method, path, bodyContent st
 	require.NoError(t, err)
 
 	return res
+}
+
+func setConfig() {
+	config.Server.Addr = "localhost:8080"
+	config.ShortURL.Host = "http://test.ru"
+	config.ShortURL.Len = 8
+	config.SetConfig(config.Server, config.ShortURL)
 }

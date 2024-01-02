@@ -1,10 +1,11 @@
 package handler
 
 import (
-	"github.com/dziablitsev/shortener/internal/response"
-	"github.com/dziablitsev/shortener/internal/storage"
 	"net/http"
 	"strings"
+
+	"github.com/dziablitsev/shortener/internal/response"
+	"github.com/dziablitsev/shortener/internal/storage"
 )
 
 func Redirect(res http.ResponseWriter, req *http.Request) {

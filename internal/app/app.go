@@ -2,15 +2,19 @@ package app
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+
+	"github.com/go-chi/chi/v5"
+
 	"github.com/dziablitsev/shortener/internal/config"
 	"github.com/dziablitsev/shortener/internal/handler"
 	"github.com/dziablitsev/shortener/internal/middleware"
-	"github.com/go-chi/chi/v5"
-	"log"
-	"net/http"
 )
 
 func Run() error {
+	config.SetConfig(config.BuildConfig())
+
 	if config.Server.Debug {
 		fmt.Println("Running server on", config.Server.Addr)
 		fmt.Println("Short link host is", config.ShortURL.Host)
