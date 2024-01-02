@@ -1,9 +1,10 @@
 package storage
 
 import (
-	"github.com/dziablitsev/shortener/internal/config"
 	"math/rand"
 	"time"
+
+	"github.com/dziablitsev/shortener/internal/config"
 )
 
 var urlMap = make(map[string]string)

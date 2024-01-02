@@ -1,10 +1,12 @@
 package middleware
 
 import (
+	"net/http"
+
+	"github.com/go-chi/chi/v5"
+
 	"github.com/dziablitsev/shortener/internal/config"
 	"github.com/dziablitsev/shortener/internal/response"
-	"github.com/go-chi/chi/v5"
-	"net/http"
 )
 
 func URLParam(next http.Handler) http.Handler {

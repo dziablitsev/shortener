@@ -1,10 +1,8 @@
-package main
+package config
 
-import (
-	"os"
-)
+import "os"
 
-func setEnvValues() {
+func SetEnvValues() {
 	if envServerAddr := os.Getenv("SERVER_ADDRESS_"); envServerAddr != "" {
 		serverAddr = envServerAddr
 	}
