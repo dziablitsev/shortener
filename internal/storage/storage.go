@@ -1,26 +1,25 @@
 package storage
 
 import (
+	"github.com/dziablitsev/shortener/internal/config"
 	"math/rand"
 	"time"
 )
 
 var urlMap = make(map[string]string)
 
-const KeyLength int = 8
-
 func Add(url string) string {
-	key := generateKey(KeyLength)
-	urlMap[key] = url
-	return key
+	id := generateID(config.ShortLinkLen)
+	urlMap[id] = url
+	return id
 }
 
-func Get(key string) (string, bool) {
-	url, found := urlMap[key]
+func Get(id string) (string, bool) {
+	url, found := urlMap[id]
 	return url, found
 }
 
-func generateKey(length int) string {
+func generateID(length int) string {
 	rand.NewSource(time.Now().UnixNano())
 	var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 	result := make([]rune, length)
