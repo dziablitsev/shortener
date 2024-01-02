@@ -10,6 +10,8 @@ import (
 )
 
 func TestRedirect(t *testing.T) {
+	setConfig()
+
 	positiveTests := []struct {
 		name     string
 		url      string

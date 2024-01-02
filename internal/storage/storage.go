@@ -9,7 +9,7 @@ import (
 var urlMap = make(map[string]string)
 
 func Add(url string) string {
-	id := generateID(config.ShortLinkLen)
+	id := generateID(config.ShortURL.Len)
 	urlMap[id] = url
 	return id
 }
