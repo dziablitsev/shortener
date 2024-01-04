@@ -2,13 +2,13 @@ package app
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
 
 	"github.com/dziablitsev/shortener/internal/config"
 	"github.com/dziablitsev/shortener/internal/handler"
+	"github.com/dziablitsev/shortener/internal/logger"
 	"github.com/dziablitsev/shortener/internal/middleware"
 )
 
@@ -21,17 +21,21 @@ func Run() error {
 		fmt.Println("Short link length is", config.ShortURL.Len)
 	}
 
-	err := http.ListenAndServe(config.Server.Addr, Router())
-	if err != nil {
-		log.Fatal(err)
+	if err := logger.Initialize(config.Server.LogLevel); err != nil {
 		return err
 	}
+
+	err := http.ListenAndServe(config.Server.Addr, Router())
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
 func Router() chi.Router {
 	router := chi.NewRouter()
-	router.Use(middleware.URLParam)
+	router.Use(middleware.URLParam, middleware.ResponseLogger, middleware.RequestLogger)
 	router.Post("/", handler.Create)
 	router.Get("/{id}", handler.Redirect)
 	return router
