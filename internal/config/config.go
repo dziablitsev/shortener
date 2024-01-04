@@ -4,8 +4,10 @@ var Server ServerConfig
 var ShortURL ShortURLConfig
 
 var serverAddr string
-var shortURLHost string
 var serverDebug bool
+var serverLogLevel string
+
+var shortURLHost string
 var shortURLLen int
 
 func SetConfig(serverConfig ServerConfig, shortURLConfig ShortURLConfig) {
@@ -21,6 +23,7 @@ func BuildConfig() (ServerConfig, ShortURLConfig) {
 	serverConfig := serverConfigBuilder.
 		WithAddr(serverAddr).
 		WithDebug(serverDebug).
+		WithLogLevel(serverLogLevel).
 		GetConfig()
 
 	var shortURLConfigBuilder ShortURLConfigBuilder

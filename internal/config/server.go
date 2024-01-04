@@ -1,8 +1,9 @@
 package config
 
 type ServerConfig struct {
-	Addr  string
-	Debug bool
+	Addr     string
+	Debug    bool
+	LogLevel string
 }
 
 type ServerConfigBuilder struct {
@@ -16,6 +17,11 @@ func (b ServerConfigBuilder) WithAddr(addr string) ServerConfigBuilder {
 
 func (b ServerConfigBuilder) WithDebug(debug bool) ServerConfigBuilder {
 	b.config.Debug = debug
+	return b
+}
+
+func (b ServerConfigBuilder) WithLogLevel(logLevel string) ServerConfigBuilder {
+	b.config.LogLevel = logLevel
 	return b
 }
 
